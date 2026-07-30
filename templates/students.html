@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+
+<body>
+
+<div class="container mt-5">
+
+<h2>All Students</h2>
+
+
+<table class="table table-bordered">
+
+<thead>
+
+<tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Age</th>
+    <th>Branch</th>
+    <th>Email</th>
+</tr>
+
+</thead>
+
+
+<tbody>
+
+{% for student in students %}
+
+<tr>
+
+<td>{{ student.id }}</td>
+
+<td>{{ student.name }}</td>
+
+<td>{{ student.age }}</td>
+
+<td>{{ student.branch }}</td>
+
+<td>{{ student.email }}</td>
+
+</tr>
+
+<th>Action</th>
+
+<td>
+
+<a href="/delete/{{ student.id }}"
+   class="btn btn-danger">
+
+Delete
+
+</a>
+
+</td>
+{% endfor %}
+
+
+</tbody>
+
+
+</table>
+
+
+</div>
+
+
+
+{% endblock %}
