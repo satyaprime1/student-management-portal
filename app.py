@@ -1,12 +1,12 @@
-from flask import Flask, render_template
+from flask import Flask
+
 from config import Config
 from extensions import db, login_manager
-from models.student import Student
-from flask import request, redirect, url_for
+
 from models.user import User
-from flask import request, redirect, url_for, flash
-from flask_login import login_user,login_required, logout_user
-from werkzeug.security import check_password_hash
+
+from werkzeug.security import generate_password_hash
+
 from routes.student_routes import student_bp
 from routes.auth_routes import auth_bp
 
@@ -28,5 +28,14 @@ def load_user(user_id):
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()
+        if not User.query.filter_by(username="admin").first():
+            admin_user = User(
+                username="admin",
+                email="admin@example.com",
+                password_hash=generate_password_hash("admin123"),
+                role="admin"
+            )
+            db.session.add(admin_user)
+            db.session.commit()
 
     app.run(debug=True)

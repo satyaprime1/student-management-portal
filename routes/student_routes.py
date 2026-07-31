@@ -1,6 +1,6 @@
-from flask import Flask, render_template
-from config import Config
-from extensions import db, login_manager
+from flask import render_template
+from decorators import admin_required
+from extensions import db
 from models.student import Student
 from flask import request, redirect, url_for
 from models.user import User
@@ -21,6 +21,7 @@ def home():
 
 @student_bp.route("/add", methods=["GET", "POST"])
 @login_required
+@admin_required
 def add_student():
 
     if request.method == "POST":
@@ -61,6 +62,7 @@ def students():
 
 @student_bp.route("/edit/<int:id>", methods=["GET", "POST"])
 @login_required
+@admin_required
 def edit_student(id):
 
     student = Student.query.get(id)
@@ -86,6 +88,7 @@ def edit_student(id):
 
 @student_bp.route("/delete/<int:id>")
 @login_required
+@admin_required
 def delete_student(id):
 
     student = Student.query.get(id)
