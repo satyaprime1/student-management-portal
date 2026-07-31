@@ -1,22 +1,39 @@
 # 🎓 Student Management Portal
 
-A Student Management Portal built using **Flask**, **SQLAlchemy**, **SQLite**, and **Bootstrap**. This project is being developed step-by-step as a backend and full-stack learning project.
+A Student Management Portal built with **Flask**, **SQLAlchemy**, and **Bootstrap**. The application supports user authentication, role-based authorization, and complete CRUD operations for managing student records.
+
+---
 
 ## 🚀 Features
 
-### ✅ Student Management
+### 👤 Authentication
+- User Registration
+- User Login
+- User Logout
+- Password Hashing using Werkzeug
+- Session Management with Flask-Login
+
+### 🔐 Authorization
+- Role-Based Access Control (RBAC)
+- Admin-only access for:
+  - Add Student
+  - Edit Student
+  - Delete Student
+- Students can view student records after logging in
+
+### 📚 Student Management
 - Add Student
-- View All Students
-- Edit Student Details
+- View Students
+- Edit Student
 - Delete Student
 
-### 🔐 Authentication (In Progress)
-- User Model
-- Password Hashing
-- Flask-Login Setup
-- Login System
-- Admin Account
-- Route Protection (In Progress)
+### 🎨 Frontend
+- Bootstrap 5 UI
+- Responsive Navigation Bar
+- Flash Messages
+- Jinja2 Templates
+
+---
 
 ## 🛠️ Tech Stack
 
@@ -25,23 +42,24 @@ A Student Management Portal built using **Flask**, **SQLAlchemy**, **SQLite**, a
 - Flask-SQLAlchemy
 - Flask-Login
 - SQLite
-- HTML
 - Bootstrap 5
+- HTML5
+- Jinja2
+
+---
 
 ## 📂 Project Structure
 
 ```
 Student-Management-Portal/
 │
-├── app.py
-├── config.py
-├── extensions.py
-├── requirements.txt
-├── create_admin.py
-│
 ├── models/
 │   ├── student.py
 │   └── user.py
+│
+├── routes/
+│   ├── student_routes.py
+│   └── auth_routes.py
 │
 ├── templates/
 │   ├── base.html
@@ -50,70 +68,128 @@ Student-Management-Portal/
 │   ├── add_student.html
 │   ├── edit_student.html
 │   ├── login.html
+│   ├── register.html
 │   └── about.html
 │
-└── student.db
+├── static/
+│   ├── css/
+│   ├── js/
+│   └── images/
+│
+├── app.py
+├── config.py
+├── extensions.py
+├── decorators.py
+├── requirements.txt
+└── README.md
 ```
+
+---
 
 ## ⚙️ Installation
 
-Clone the repository
+### Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/Student-Management-Portal.git
-```
-
-Go into the project
-
-```bash
+git clone https://github.com/satyaprime1/Student-Management-Portal.git
 cd Student-Management-Portal
 ```
 
-Install dependencies
+### Create a virtual environment
+
+```bash
+python -m venv venv
+```
+
+### Activate the virtual environment
+
+Windows
+
+```bash
+venv\Scripts\activate
+```
+
+Mac/Linux
+
+```bash
+source venv/bin/activate
+```
+
+### Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-Run the application
+### Run the application
 
 ```bash
 python app.py
 ```
 
-Open your browser
+Open your browser and visit:
 
 ```
 http://127.0.0.1:5000
 ```
 
-## 📌 Current Progress
+---
 
-- ✅ CRUD Operations
-- ✅ Database Integration
-- ✅ User Authentication Foundation
-- 🚧 Login Authentication
-- 🚧 Role-Based Authorization
-- 🚧 Student Dashboard
+## 👨‍💼 Default Admin Account
 
-## 🎯 Future Improvements
+The application automatically creates an administrator account when run for the first time.
 
-- Admin Dashboard
-- Student Dashboard
-- Attendance Management
-- Marks Management
-- Search & Filter
-- Pagination
-- Profile Pictures
-- Password Reset
-- Email Verification
+**Username**
 
-## 👨‍💻 Developer
+```
+admin
+```
 
-**Satya Harsha**
+**Password**
 
-Learning Flask and Backend Development through project-based practice.
+```
+admin123
+```
 
 ---
 
-⭐ If you like this project, consider giving it a star.
+## 📸 Current Features
+
+- ✅ User Registration
+- ✅ User Login
+- ✅ User Logout
+- ✅ Password Hashing
+- ✅ Role-Based Authorization
+- ✅ Admin Dashboard Access Control
+- ✅ CRUD Operations
+- ✅ SQLAlchemy ORM
+- ✅ Flask Blueprints
+- ✅ Responsive Bootstrap UI
+
+---
+
+## 🔮 Future Improvements
+
+- Search Students
+- Pagination
+- Profile Management
+- Email Verification
+- Password Reset
+- Dashboard Statistics
+- Student Photo Upload
+- REST API
+- Docker Deployment
+
+---
+
+## 👨‍💻 Author
+
+**Satya Harsha**
+
+GitHub: https://github.com/satyaprime1
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
