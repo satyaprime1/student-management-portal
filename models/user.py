@@ -22,9 +22,9 @@ class User(db.Model, UserMixin):
         nullable=False
     )
 
-    password_hash = db.Column(
-        db.String(200),
-        nullable=False
+    ##password_hash = db.Column(
+        ##db.String(200),
+        ##nullable=False
     )
 
     role = db.Column(
