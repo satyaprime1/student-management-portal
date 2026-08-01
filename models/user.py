@@ -27,7 +27,7 @@ class User(db.Model, UserMixin):
         nullable=False
     )
 
-    ##role = db.Column(
-        ##db.String(20),
-        ##default="student"
-    ##)
+    role = db.Column(
+        db.String(20),
+        default="student"
+    )
