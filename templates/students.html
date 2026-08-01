@@ -1,71 +1,66 @@
-{% extends "base.html" %}
-{% block content %}
-
-
-
-<body>
+{% extends "base.html" %} {% block content %}
 
 <div class="container mt-5">
+  <h2 class="mb-4">All Students</h2>
 
-<h2>All Students</h2>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Branch</th>
+        <th>Email</th>
 
+        {% if current_user.role == "admin" %}
+        <th>Actions</th>
+        {% endif %}
+      </tr>
+    </thead>
 
-<table class="table table-bordered">
+    <tbody>
+      {% for student in students %}
 
-<thead>
+      <tr>
+        <td>{{ student.id }}</td>
+        <td>{{ student.name }}</td>
+        <td>{{ student.age }}</td>
+        <td>{{ student.branch }}</td>
+        <td>{{ student.email }}</td>
 
-<tr>
-    <th>ID</th>
-    <th>Name</th>
-    <th>Age</th>
-    <th>Branch</th>
-    <th>Email</th>
-</tr>
+        {% if current_user.role == "admin" %}
 
-</thead>
+        <td>
+          <a
+            href="{{ url_for('student.edit_student', id=student.id) }}"
+            class="btn btn-warning btn-sm"
+          >
+            Edit
+          </a>
 
+          <form
+            action="{{ url_for('student.delete_student', id=student.id) }}"
+            method="POST"
+            class="d-inline"
+          >
+            <button
+              type="submit"
+              class="btn btn-danger btn-sm"
+              onclick="
+                return confirm('Are you sure you want to delete this student?');
+              "
+            >
+              Delete
+            </button>
+          </form>
+        </td>
 
-<tbody>
+        {% endif %}
+      </tr>
 
-{% for student in students %}
-
-<tr>
-
-<td>{{ student.id }}</td>
-
-<td>{{ student.name }}</td>
-
-<td>{{ student.age }}</td>
-
-<td>{{ student.branch }}</td>
-
-<td>{{ student.email }}</td>
-
-</tr>
-
-<th>Action</th>
-
-<td>
-
-<a href="/delete/{{ student.id }}"
-   class="btn btn-danger">
-
-Delete
-
-</a>
-
-</td>
-{% endfor %}
-
-
-</tbody>
-
-
-</table>
-
-
+      {% endfor %}
+    </tbody>
+  </table>
 </div>
-
-
 
 {% endblock %}

@@ -4,7 +4,13 @@
 
 <div class="container mt-5">
 
-    <h2>Add Student</h2>
+{% if current_user.role == "admin" %}
+
+<h2>
+    Add Student
+</h2>
+
+{% endif %}
 
     <form method="POST">
 

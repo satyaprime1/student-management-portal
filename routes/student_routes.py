@@ -31,7 +31,6 @@ def add_student():
         branch = request.form["branch"]
         email = request.form["email"]
 
-
         student = Student(
             name=name,
             age=age,
@@ -39,12 +38,11 @@ def add_student():
             email=email
         )
 
-
         db.session.add(student)
         db.session.commit()
 
-
-        return "Student Added!"
+        flash("Student added successfully!", "success")
+        return redirect(url_for("student.students"))
 
     return render_template("add_student.html")
 
@@ -78,27 +76,26 @@ def edit_student(id):
 
         db.session.commit()
 
-        return "Updated Successfully"
+        flash("Student updated successfully!", "success")
+        return redirect(url_for("student.students"))
+    return render_template("edit_student.html", student=student)
 
-
-    return render_template(
-        "edit_student.html",
-        student=student
-    )
-
-@student_bp.route("/delete/<int:id>")
+@student_bp.route("/delete/<int:id>", methods=["POST"])
 @login_required
 @admin_required
 def delete_student(id):
 
-    student = Student.query.get(id)
+    student = db.session.get(Student, id)
+
+    if not student:
+        flash("Student not found.", "danger")
+        return redirect(url_for("student.students"))
 
     db.session.delete(student)
-
     db.session.commit()
 
-    return "Student Deleted!"
-
+    flash("Student deleted successfully!", "success")
+    return redirect(url_for("student.students"))
 
 @student_bp.route("/about")
 def about():
