@@ -14,7 +14,7 @@
 
 <body>
 
-    <!-- Navbar -->
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
 
@@ -75,10 +75,8 @@
     </nav>
 
 
-    <!-- Main Content -->
     <div class="container mt-4">
 
-        <!-- Flash Messages -->
         {% with messages = get_flashed_messages(with_categories=true) %}
 
             {% if messages %}
@@ -106,14 +104,12 @@
         {% endwith %}
 
 
-        <!-- Child Template Content -->
         {% block content %}
         {% endblock %}
 
     </div>
 
 
-    <!-- Bootstrap JavaScript -->
     <script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js">
     </script>
