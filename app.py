@@ -1,4 +1,4 @@
-from flask import Flask
+1from flask import Flask
 
 from config import Config
 from extensions import db, login_manager
